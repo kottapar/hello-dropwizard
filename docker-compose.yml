@@ -1,0 +1,29 @@
+version: '3'
+services:
+  ngproxy:
+    image: nginx
+    container_name: nginx
+    restart: always
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+    networks:
+      - proxy-bridge
+        #    links:
+        #      - dropwiz
+ 
+
+  dropwiz:
+    build: .
+    image: dropwiz
+    container_name: dropwiz
+    restart: always
+    expose:
+      - "8080"
+      - "8081"
+    networks:
+      - proxy-bridge
+
+networks:
+  proxy-bridge:
