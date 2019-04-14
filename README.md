@@ -26,6 +26,16 @@ root@ubuntu:~/hello-drop/hello-dropwizard#
 ```
 This will start two containers dropwiz, the app and nginx, the reverse proxy.
 
+Testing
+-------
+You can verify the env setup by access the URLs for hello and healtcheck. If you're running docker on a VM, replace localhost with the VM ip.
+
+http://<localhost or VM ip>/hello
+  
+http://<localhost or VM ip>/healthcheck
+
+Bring down the env
+------------------
 To bring down the env, run docker-compose down and you should see them spinning down.
 
 ```
