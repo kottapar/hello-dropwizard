@@ -1,0 +1,12 @@
+---
+
+name: Install the pre-requisite packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ prereqs }}"
+
+name: Install Eclipse IDE
+  unarchive:
+    src: "{{ eclipse-url }}"
+    dest: "{{ eclipse-dest }}"

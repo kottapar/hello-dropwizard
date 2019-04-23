@@ -1,0 +1,41 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# Use the config.yml file in this dir to configure
+# Make sure you know what you're doing if you're going to edit this file
+
+require 'yaml'
+dir = File.dirname(File.expand_path(__FILE__))
+config_file = "#{dir}/vmconfig.yml"
+
+if !File.exist?("#{config_file}")
+  raise 'Configuration file vmconfig.yml is missing in this dir!'
+end
+vconfig = YAML::load_file("#{config_file}")
+
+
+Vagrant.configure(2) do |config|
+  config.vm.box = vconfig['vagrant_box']
+  config.vm.box_version = vconfig['vagrant_box_ver']
+  config.vm.synced_folder "../", vconfig['vagrant_directory']
+  config.vm.hostname = vconfig['vagrant_hostname']
+  config.ssh.forward_x11 = true
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    vb.cpus = vconfig['vagrant_cpu']
+    vb.memory = vconfig['vagrant_memory']
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+      apt update
+      apt upgrade -y
+    SHELL
+  end  
+  config.vm.provision "ansible_local" do |ansible|
+    ansible.limit = 'all'
+    ansible.inventory_path = 'hosts'
+    ansible.playbook = 'setup.yml'
+  end
+end
+
+

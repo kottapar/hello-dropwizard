@@ -1,0 +1,18 @@
+---
+prereqs:
+  - openjdk-8-jdk
+  - openjdk-8-jre
+  - maven
+  - vim
+  - virtualbox-guest-dkms 
+  - rtualbox-guest-utils 
+  - virtualbox-guest-x11
+  - xfce4 
+  - terminator
+  - git
+  - curl
+  - unzip
+
+eclipse-url: "http://ftp.jaist.ac.jp/pub/eclipse/technology/epp/downloads/release/2018-09/R/eclipse-java-2018-09-linux-gtk-x86_64.tar.gz"
+eclipse-dest: "/opt/eclipse.tar.gz"
+
