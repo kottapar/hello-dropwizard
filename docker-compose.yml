@@ -22,17 +22,5 @@ services:
     networks:
       - proxy-bridge
 
-# For some reason the metrics are not being sent to Graphite. So disabling it for now.
-        #graphite:
-        #    image: rvernica/graphite
-        #    container_name: graphite
-        #    restart: always
-        #    expose:
-        #      - "2003"
-        #    volumes:
-        #      - /opt/dropwiz-graphite/metrics:/opt/graphite/storage/whisper
-        #    networks:
-        #    - proxy-bridge
-
 networks:
   proxy-bridge:
