@@ -21,3 +21,5 @@ atlassian-ide-plugin.xml
 logs
 
 **/.vagrant
+**/*.retry
+**/*.log

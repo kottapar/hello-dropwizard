@@ -24,24 +24,25 @@ mem = vconfig['vagrant_memory']
 Vagrant.configure(2) do |config|
   config.vm.box = "#{box}"
   config.vm.box_version = "#{box_ver}"
-  config.vm.synced_folder "../", "#{sync_dir}"
+  config.vm.synced_folder "../", "#{sync_dir}",
+    mount_options: ["dmode=755,fmode=755"]
   config.vm.hostname = "#{hname}"
   config.vm.network "private_network", ip: "#{ipaddr}"
   config.ssh.forward_x11 = true
 
   config.vm.provider "virtualbox" do |vb|
-    vb.gui = true
+    vb.gui = false
     vb.cpus = "#{cpu}"
     vb.memory = "#{mem}"
   end
   
-  config.vm.provision : docker
-  config.vm.provision : docker_compose
+  config.vm.provision :docker
 
   config.vm.provision "ansible_local" do |ansible|
     ansible.limit = 'all'
-    ansible.inventory_path = '../ansible/hosts'
-    ansible.playbook = '../ansible/setup-dev.yml'
+    ansible.provisioning_path = '/vagrant/ansible'
+    ansible.inventory_path = 'hosts'
+    ansible.playbook = 'setup-dev.yml'
   end
 end
 
