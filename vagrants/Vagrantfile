@@ -34,6 +34,9 @@ Vagrant.configure(2) do |config|
     vb.cpus = "#{cpu}"
     vb.memory = "#{mem}"
   end
+  
+  config.vm.provision : docker
+  config.vm.provision : docker_compose
 
   config.vm.provision "ansible_local" do |ansible|
     ansible.limit = 'all'
