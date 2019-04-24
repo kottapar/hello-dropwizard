@@ -1,6 +1,6 @@
 # Introduction
 
-The Dropwizard Hello World application
+This will help setup a development environment for developing Java app. We're assuming that you have an IDE installed on your laptop or PC.
 
 # Setup the dev environment
 

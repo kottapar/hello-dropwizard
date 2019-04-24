@@ -13,8 +13,3 @@ prereqs:
   - curl
   - unzip
   - docker-compose
-
-eclipse_url: "http://ftp.jaist.ac.jp/pub/eclipse/technology/epp/downloads/release/2018-09/R/eclipse-java-2018-09-linux-gtk-x86_64.tar.gz"
-eclipse_tmp_dest: "/tmp/eclipse.tar.gz"
-eclipse_dest: "/opt/eclipse.tar.gz"
-

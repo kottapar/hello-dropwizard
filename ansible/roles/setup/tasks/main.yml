@@ -5,13 +5,3 @@
     name: "{{ item }}"
     state: present
   with_items: "{{ prereqs }}"
-
-- name: Download Eclipse IDE
-  get_url:
-    url: "{{ eclipse_url }}"
-    dest: "{{ eclipse_tmp_dest }}"
-
-- name: Install Eclipse IDE
-  unarchive:
-    src: "{{ eclipse_tmp_dest }}"
-    dest: /opt
