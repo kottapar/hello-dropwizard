@@ -12,29 +12,33 @@ if !File.exist?("#{config_file}")
 end
 vconfig = YAML::load_file("#{config_file}")
 
+# Let's define variables from the config file. 
+box = vconfig['vagrant_box']
+box_ver = vconfig['vagrant_box_ver']
+sync_dir = vconfig['vagrant_directory']
+hname = vconfig['vagrant_hostname']
+ipaddr = vconfig['vagrant_ip']
+cpu = vconfig['vagrant_cpu']
+mem = vconfig['vagrant_memory']
 
 Vagrant.configure(2) do |config|
-  config.vm.box = vconfig['vagrant_box']
-  config.vm.box_version = vconfig['vagrant_box_ver']
-  config.vm.synced_folder "../", vconfig['vagrant_directory']
-  config.vm.hostname = vconfig['vagrant_hostname']
+  config.vm.box = "#{box}"
+  config.vm.box_version = "#{box_ver}"
+  config.vm.synced_folder "../", "#{sync_dir}"
+  config.vm.hostname = "#{hname}"
+  config.vm.network "private_network", ip: "#{ipaddr}"
   config.ssh.forward_x11 = true
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true
-    vb.cpus = vconfig['vagrant_cpu']
-    vb.memory = vconfig['vagrant_memory']
+    vb.cpus = "#{cpu}"
+    vb.memory = "#{mem}"
   end
 
-  config.vm.provision "shell", inline: <<-SHELL
-      apt update
-      apt upgrade -y
-    SHELL
-  end  
   config.vm.provision "ansible_local" do |ansible|
     ansible.limit = 'all'
-    ansible.inventory_path = 'hosts'
-    ansible.playbook = 'setup.yml'
+    ansible.inventory_path = '../ansible/hosts'
+    ansible.playbook = '../ansible/setup-dev.yml'
   end
 end
 

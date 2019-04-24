@@ -1,6 +1,6 @@
 vagrant_box: ubuntu/bionic64
 vagrant_box_ver: 20190419.0.0
-vagrant_ip: 192.168.99.
+vagrant_ip: 192.168.99.101
 vagrant_hostname: devhost
 vagrant_memory: 2048
 vagrant_directory: /vagrant
