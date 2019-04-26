@@ -16,9 +16,9 @@ Creating the VM
 2. If you're in windows extract the zip package and navigate to the dir `hello-dropwizard`
 3. Linux or Mac: Execute `setupdev.sh`
 4. Windows: Execute `setupdev-windows.bat`
-  a. This script installs the `vagrant-vbguest` plugin - keeps the VM's guest-additions up-to-date.
-  b. It runs `export VAGRANT_CWD=./vagrants` or `SET VAGRANT_CWD=./vagrants` to set the path to the Vagrantfile.
-  c. It then runs the `vagrant up` command to spin up the VM.
+   - This script installs the `vagrant-vbguest` plugin - keeps the VM's guest-additions up-to-date.
+   - It runs `export VAGRANT_CWD=./vagrants` or `SET VAGRANT_CWD=./vagrants` to set the path to the Vagrantfile.
+   - It then runs the `vagrant up` command to spin up the VM.
 5. Once the VM is created run `vagrant ssh` to login to the VM.
 6. The project directory will be mounted as `/vagrant`
 7. Configuration for the VM can be edited by modifying the values in `vagrants/vmconfig.yml`
@@ -29,13 +29,13 @@ Starting the app
 ----------------
 1. Run `vagrant ssh` and navigate to the project directory in the VM `cd /vagrant`
 2. If this is the first run then the docker image has to be created for the app. 
-  a. Run `docker build -t dropwiz --build-arg artifactid=hello-dropwizard --build-arg artver=1.0 .`
-  b. This uses the `Dockerfile` to build the image for our app.
-  c. `artifactid` and `artver` are the arguments it uses to create the application jar file `hello-dropwizard-1.0-SNAPSHOT.jar`
-  d. Feel free to change these values to build newer image versions.
+   - Run `docker build -t dropwiz --build-arg artifactid=hello-dropwizard --build-arg artver=1.0 .`
+   - This uses the `Dockerfile` to build the image for our app.
+   - `artifactid` and `artver` are the arguments it uses to create the application jar file `hello-dropwizard-1.0-SNAPSHOT.jar`
+   - Feel free to change these values to build newer image versions.
 3. Run `docker images` to list and verify that the image is created
 4. Run `docker-compose up -d` to spin up the docker containers.
-  a. This will use the `docker-compose.yml` file to create services `dropwiz` and `ngproxy` using the app image we just created and nginx image.
+   - This will use the `docker-compose.yml` file to create services `dropwiz` and `ngproxy` using the app image we just created and nginx image.
 
 ```
 vagrant@devhost:/vagrant$ docker-compose up -d
