@@ -14,8 +14,8 @@ Creating the VM
 ---------------
 1. Change your path to the project directory (`cd hello-dropwizard`)
 2. If you're in windows extract the zip package and navigate to the dir `hello-dropwizard`
-3. Linux or Mac: Execute `setupdev.sh`
-4. Windows: Execute `setupdev-windows.bat`
+3. **Linux or Mac**: Execute `setupdev.sh`
+4. **Windows**: Execute `setupdev-windows.bat`
    - This script installs the `vagrant-vbguest` plugin - keeps the VM's guest-additions up-to-date.
    - It runs `export VAGRANT_CWD=./vagrants` or `SET VAGRANT_CWD=./vagrants` to set the path to the Vagrantfile.
    - It then runs the `vagrant up` command to spin up the VM.
