@@ -8,7 +8,7 @@ Prerequisites
 -------------
 1. [Download and install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 2. [Download and install Vagrant](http://www.vagrantup.com/downloads.html)
-3. Download and extract the latest source of this project
+3. Download and extract the latest [release](https://github.com/kottapar/hello-dropwizard/releases) of this project
 
 Getting started
 ---------------
