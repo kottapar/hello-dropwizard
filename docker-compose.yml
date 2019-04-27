@@ -16,9 +16,6 @@ services:
     image: dropwiz
     container_name: dropwiz
     restart: always
-    depends_on:
-      - ngproxy
-      - graphite
     expose:
       - "8080"
       - "8081"
