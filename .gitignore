@@ -19,3 +19,7 @@ nb-configuration.xml
 atlassian-ide-plugin.xml
 
 logs
+
+**/.vagrant
+**/*.retry
+**/*.log

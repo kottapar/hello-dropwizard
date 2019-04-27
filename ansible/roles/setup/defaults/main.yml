@@ -1,0 +1,15 @@
+---
+prereqs:
+  - openjdk-8-jdk
+  - openjdk-8-jre
+  - maven
+  - vim
+  - virtualbox-guest-dkms 
+  - virtualbox-guest-utils 
+  - virtualbox-guest-x11
+  - xfce4 
+  - terminator
+  - git
+  - curl
+  - unzip
+  - docker-compose

@@ -1,0 +1,49 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# Use the config.yml file in this dir to configure
+# Make sure you know what you're doing if you're going to edit this file
+
+require 'yaml'
+dir = File.dirname(File.expand_path(__FILE__))
+config_file = "#{dir}/vmconfig.yml"
+
+if !File.exist?("#{config_file}")
+  raise 'Configuration file vmconfig.yml is missing in this dir!'
+end
+vconfig = YAML::load_file("#{config_file}")
+
+# Let's define variables from the config file. 
+box = vconfig['vagrant_box']
+box_ver = vconfig['vagrant_box_ver']
+sync_dir = vconfig['vagrant_directory']
+hname = vconfig['vagrant_hostname']
+ipaddr = vconfig['vagrant_ip']
+cpu = vconfig['vagrant_cpu']
+mem = vconfig['vagrant_memory']
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "#{box}"
+  config.vm.box_version = "#{box_ver}"
+  config.vm.synced_folder "../", "#{sync_dir}",
+    mount_options: ["dmode=755,fmode=755"]
+  config.vm.hostname = "#{hname}"
+  config.vm.network "private_network", ip: "#{ipaddr}"
+  config.ssh.forward_x11 = true
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+    vb.cpus = "#{cpu}"
+    vb.memory = "#{mem}"
+  end
+  
+  config.vm.provision :docker
+
+  config.vm.provision "ansible_local" do |ansible|
+    ansible.limit = 'all'
+    ansible.provisioning_path = '/vagrant/ansible'
+    ansible.inventory_path = 'hosts'
+    ansible.playbook = 'setup-dev.yml'
+  end
+end
+
+
