@@ -17,5 +17,6 @@ COPY --from=build example.yaml .
 COPY --from=build target/${artifact} .
 RUN adduser -D -u 1001 java && chown -R java /app
 USER java
+
 ENTRYPOINT ["sh", "-c"]
 CMD ["/usr/bin/java -jar ${artifact} server example.yaml"]
