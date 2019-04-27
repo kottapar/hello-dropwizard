@@ -10,14 +10,14 @@ Prerequisites
 2. [Download and install Vagrant](http://www.vagrantup.com/downloads.html)
 3. Download and extract the latest source of this project
 
-Creating the VM
+Getting started
 ---------------
 1. Change your path to the project directory (`cd hello-dropwizard`)
 2. If you're in windows extract the zip package and navigate to the dir `hello-dropwizard`
 3. **Linux or Mac**: Execute `setupdev.sh`
 4. **Windows**: Execute `setupdev-windows.bat`
    - This script installs the `vagrant-vbguest` plugin - keeps the VM's guest-additions up-to-date.
-   - It runs `export VAGRANT_CWD=./vagrants` or `SET VAGRANT_CWD=./vagrants` to set the path to the Vagrantfile.
+   - It runs `export VAGRANT_CWD=./vagrants` or `SET VAGRANT_CWD=./vagrants` to set the path for detecting the Vagrantfile.
    - It then runs the `vagrant up` command to spin up the VM.
 5. Once the VM is created run `vagrant ssh` to login to the VM.
 6. The project directory will be mounted as `/vagrant`
@@ -85,6 +85,15 @@ destroying and recreating the VM
 2. `Ctrl+D` to exit the VM to your host machine
 3. Run `vagrant destroy` to destroy this VM
 4. Run `setupdev.sh` or `setupdev-windows.sh` to start all over again.
+
+Configuration files and arguments
+---------------------------------
+1. Configuration for the VM can be edited by modifying the values in `vagrants/vmconfig.yml`
+2. We're using Ansible to install the required packages. Edit `ansible/roles/setup/defaults/main.yml` to add or remove packages.
+3. We've provided two arguments `artifactid` and `artver` in the `Dockerfile` to create the application jar file `hello-dropwizard-1.0-SNAPSHOT.jar`
+   - They can be modified when executing the `docker build..` command to build a different image, for example a `dropwizv1.5`
+   - An environment variable `artifact=${artifactid}-${artver}-SNAPSHOT.jar` is used in the Dockerfile
+
 
 
 
