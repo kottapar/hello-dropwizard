@@ -7,7 +7,7 @@ jdk: openjdk8
 
 env:
   - artifactid="hello-dropwizard"
-  - artver="1.0"
+  - artver=1.0
 cache:
   directories:
     - '$HOME/.m2'
