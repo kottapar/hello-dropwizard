@@ -1,0 +1,25 @@
+# config file for testing the docker image of the app
+#
+#
+language: java
+install: true
+jdk: openjdk-8-jdk
+
+env:
+  - artifactid="hello-dropwizard"
+  - artver="1.0"
+cache:
+  directories:
+    - '$HOME/.m2'
+
+services:
+  - docker
+
+install:
+  - mvn package
+  - docker build -t dropwiz --build-arg artifactid=$artifactid --build-arg artver=$artver .
+  - docker run -d -p 8080:8080 -p 8081:8081 --name dropwiz dropwiz
+
+script:
+  - curl http://localhost:8080/hello-world|grep -q 'Hello, Stranger!'
+  
