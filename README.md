@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/kottapar/hello-dropwizard.svg?branch=hellov3)](https://travis-ci.com/kottapar/hello-dropwizard)
+[![Build Status](https://travis-ci.com/kottapar/hello-dropwizard.svg?branch=master)](https://travis-ci.com/kottapar/hello-dropwizard)
 
 # Introduction
 
