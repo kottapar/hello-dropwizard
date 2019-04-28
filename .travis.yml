@@ -1,6 +1,5 @@
 # config file for testing the docker image of the app
 #
-#
 language: java
 install: true
 jdk: openjdk8
