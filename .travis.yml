@@ -3,7 +3,7 @@
 #
 language: java
 install: true
-jdk: openjdk-8-jdk
+jdk: openjdk8
 
 env:
   - artifactid="hello-dropwizard"
