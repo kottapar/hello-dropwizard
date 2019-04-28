@@ -1,4 +1,6 @@
-﻿# Introduction
+[![Build Status](https://travis-ci.com/kottapar/hello-dropwizard.svg?branch=hellov3)](https://travis-ci.com/kottapar/hello-dropwizard)
+
+# Introduction
 
 This project sets up a development environment using Vagrant and Docker for developing Java apps. We're assuming that you have an IDE installed on your laptop or PC.
 

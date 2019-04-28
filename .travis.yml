@@ -1,0 +1,21 @@
+# config file for testing the docker image of the app
+#
+language: java
+install: true
+jdk: openjdk8
+
+cache:
+  directories:
+    - '$HOME/.m2'
+
+services:
+  - docker
+
+install:
+  - mvn package
+  - docker build -t dropwiz --build-arg artifactid=hello-dropwizard --build-arg artver=1.0 .
+  - docker run -d -p 8080:8080 -p 8081:8081 --name dropwiz dropwiz
+
+script:
+  - docker ps | grep -q dropwiz
+  
