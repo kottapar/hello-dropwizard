@@ -4,6 +4,12 @@
 
 This project sets up a development environment using Vagrant and Docker for developing Java apps. We're assuming that you have an IDE installed on your laptop or PC.
 
+**Update** The project is now integrated with Travis CI to build the docker image and test it once a commit is detected.
+
+So the step of packaging the app is taken out of the docker build. Once a commit is made, the build job executes `mvn package` and copies the package to the docker image as a part of the testing.
+
+If you want the build to be done in the Docker image for testing locally, use the `hellov2` branch.
+
 # Setup the dev environment
 
 Prerequisites
