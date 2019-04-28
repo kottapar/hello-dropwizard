@@ -17,5 +17,5 @@ install:
   - docker run -d -p 8080:8080 -p 8081:8081 --name dropwiz dropwiz
 
 script:
-  - curl http://0.0.0.0:8080/hello-world|grep -q 'Hello, Stranger!'
+  - docker ps | grep -q dropwiz
   
