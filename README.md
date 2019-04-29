@@ -8,7 +8,7 @@ This project sets up a development environment using Vagrant and Docker for deve
 
 So the step of packaging the app is taken out of the docker build. Once a commit is made, the build job executes `mvn package` and copies the package to the docker image as a part of the testing.
 
-If you want the build to be done in the Docker image for testing locally, use the `hellov2` branch.
+If you want the build to be done in the Docker image, use this [release](https://github.com/kottapar/hello-dropwizard/releases/tag/v1.0).
 
 # Setup the dev environment
 
