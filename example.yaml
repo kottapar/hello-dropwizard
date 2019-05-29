@@ -52,7 +52,7 @@ logging:
 metrics:
   reporters:
     - type: graphite
-      host: localhost
+      host: graphite
       port: 2003
       prefix: example
       frequency: 1m

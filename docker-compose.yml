@@ -16,23 +16,27 @@ services:
     image: dropwiz
     container_name: dropwiz
     restart: always
+    depends_on:
+      - ngproxy
+      - graphite
     expose:
       - "8080"
       - "8081"
     networks:
       - proxy-bridge
 
-# For some reason the metrics are not being sent to Graphite. So disabling it for now.
-        #graphite:
-        #    image: rvernica/graphite
-        #    container_name: graphite
-        #    restart: always
-        #    expose:
-        #      - "2003"
-        #    volumes:
-        #      - /opt/dropwiz-graphite/metrics:/opt/graphite/storage/whisper
-        #    networks:
-        #    - proxy-bridge
+
+  graphite:
+    image: graphiteapp/graphite-statsd
+    container_name: graphite
+    restart: always
+    expose:
+      - "2003"
+      - "2004"
+    ports:
+      - "8090:80"
+    networks:
+      - proxy-bridge
 
 networks:
   proxy-bridge:
